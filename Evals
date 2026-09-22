@@ -1,0 +1,33 @@
+Evals — How I decided the output was good enough to ship
+
+I tested the prototype against the sample positions and checked three things for each case:
+
+Was the risk detected?
+Was it prioritized correctly relative to other risks?
+Was the explanation easy to understand without looking at the underlying calculation?
+Test cases
+#	What I tested	Expected result	Pass criteria
+1	A position where margin used is more than 90% of available margin	Show a margin risk	The position appears in the risk list and the reason clearly explains the margin issue
+2	A position expiring within 1–2 days	Show an expiry risk	The position appears and the reason mentions that expiry is close
+3	A position making up more than 40% of portfolio value	Show a concentration risk	The position appears and the reason explains that too much exposure is concentrated there
+4	A position with no risk trigger (e.g., TCS)	Do not show it as a risk	The position does not appear in the risk list
+5	More than one risk present at once	Show the most important risks first	Higher-severity risks are placed higher in the list
+6	Fewer than 3 risks found	Show only the actual risks	The app does not add unnecessary positions just to fill three cards
+Definition of "good enough to ship" (for this prototype)
+Every risk shown could be traced back to one of the three defined rules — no unexplained flags.
+The app produced a short list, not a full positions dashboard.
+Each risk's reason was understandable on its own, without needing to inspect the underlying math.
+The suggested action gave the trader a clear next step to consider — without making the trading decision for them.
+
+Explicitly not tested (outside scope for a prototype): live market data, broker integration, performance at scale.
+
+What I'd test next
+
+If I had more time, the next round of evals would look at:
+
+Tie-breaking: what happens when two risks land at the same priority level?
+Combined risk: what happens when a single position has both margin risk and expiry risk at once?
+Drill-down: whether traders want to tap a risk to see more detail about why it was flagged.
+Trust: whether traders actually find the suggested actions useful and trustworthy, or just noise.
+
+These are the natural next hypotheses to validate before expanding scope beyond the current three risk types.
