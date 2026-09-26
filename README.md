@@ -4,7 +4,7 @@ A prioritization tool for F&O traders — built as a product management case stu
 
 🔗 Live prototype: swift-risk-alert.lovable.app
 
-Author: J. Pavankumar · jpk9030@gmail.com
+Author: J. Pavankumar 
 
 Overview
 
